@@ -12,7 +12,8 @@
     <OutputPath>.</OutputPath>
     <Name>iabackend</Name>
     <RootNamespace>openai</RootNamespace>
-    <InterpreterId>MSBuild|iabackend|$(MSBuildProjectFullPath)</InterpreterId>
+    <InterpreterId>
+    </InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,17 +32,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="requirements.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Interpreter Include="iabackend\">
-      <Id>iabackend</Id>
-      <Version>3.7</Version>
-      <Description>iabackend (Python 3.7 (64-bit))</Description>
-      <InterpreterPath>Scripts\python.exe</InterpreterPath>
-      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
-      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
-      <Architecture>X64</Architecture>
-    </Interpreter>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="basicia\" />

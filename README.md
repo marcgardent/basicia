@@ -30,6 +30,7 @@ in order:
 ![screenshot](Doc/run.gif)
 
 ## Implement your Agent
+fork [runner_exemple.py](Backend/runner_exemple.py) and write your `MyEnv` and `main()` :
 
 ```python
 from basicia.websocketenv import WebsocketEnv

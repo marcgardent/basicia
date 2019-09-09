@@ -1,7 +1,7 @@
 
 # basicia
 
-Library provide a `WebSocket` communication between `Keras-RL` and `Armory3D`.
+This project provide a `WebSocket` communication between `Keras-RL` and `Armory3D`.
 
 ## Installation
 

@@ -27,7 +27,7 @@ in order:
 1. start the server: your `python` script (see below: §Implement your Agent)
 2. start your `Armory3D` project with a `Javascript` target.
 
-![screenshot](doc/run.gif)
+![screenshot](Doc/run.gif)
 
 ## Implement your Agent
 

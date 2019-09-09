@@ -8,10 +8,6 @@ import basicia.definitions.IClient;
 import basicia.definitions.IState;
 
 
-#if arm_debug
-import vdebug.VDebug;
-#end
-
 
 class WebSocketEnvTrait extends iron.Trait {
 	

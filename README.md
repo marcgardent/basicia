@@ -69,10 +69,8 @@ if __name__ == "__main__":
 
 see also :
  * for instance [runner_example.py](Backend/runner_exemple.py)
- * [Keras-RL documentation](https://keras-rl.readthedocs.io/en/latest/agents/overview/)
- * [Keras-RL documentation](https://keras-rl.readthedocs.io/en/latest/agents/overview/)
-
-    * openai [Spaces : Box,Discrete ... ](https://github.com/openai/gym/tree/master/gym/spaces)
+ * [Keras-RL overview](https://keras-rl.readthedocs.io/en/latest/agents/overview/)
+ * openai [Spaces : Box,Discrete ... ](https://github.com/openai/gym/tree/master/gym/spaces)
         
 ## Implement your Environment
 

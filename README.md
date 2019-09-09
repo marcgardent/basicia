@@ -1,11 +1,11 @@
 
 # basicia
 
-Library provide a `WebSocket` communication to use `Keras-RL` and `Armory3D` together.
+Library provide a `WebSocket` communication between `Keras-RL` and `Armory3D`.
 
 ## Installation
 
-### Your environement
+### Your environment
 
 - Install Python 3.7
 - edit requirements.txt: 
@@ -16,7 +16,7 @@ Library provide a `WebSocket` communication to use `Keras-RL` and `Armory3D` tog
 ### your workspace
 
 - Locate the `.blend` file you are working with
-- Create `Libraries` folder alongside your `.blend` file
+- Create the `Libraries` folder alongside your `.blend` file
 - into `Libraries` folder Clone this repository using `git clone https://github.com/armory3d/basicia` 
 - Restart Blender and load your `.blend`
 
@@ -24,15 +24,12 @@ Library provide a `WebSocket` communication to use `Keras-RL` and `Armory3D` tog
 
 in order:
 
-1. start the server : your `python` script (see below : Implement your Agent)
+1. start the server: your `python` script (see below: §Implement your Agent)
 2. start your `Armory3D` project with a `Javascript` target.
 
 ![screenshot](doc/run.gif)
 
 ## Implement your Agent
-
-
-Template below:
 
 ```python
 from basicia.websocketenv import WebsocketEnv
@@ -55,10 +52,10 @@ def main(socket):
     # Build your model
     model = [...]
 
-	# Build your agent
-	agent = [...]
+    # Build your agent
+    agent = [...]
 
-	# Train, Save, Test
+    # Train, Save, Test
     agent.fit(env, nb_steps=50000, visualize=False, verbose=1, nb_max_episode_steps=200)
     agent.save_weights('ddpg_my_weights.h5f', overwrite=True)
     agent.test(env, nb_episodes=5, visualize=True, nb_max_episode_steps=200)
@@ -76,10 +73,7 @@ see also :
 
     * openai [Spaces : Box,Discrete ... ](https://github.com/openai/gym/tree/master/gym/spaces)
         
-## Implement your Environement
-
-
-
+## Implement your Environment
 
 ### Implement `basicia.definitions.IState` :
 
@@ -89,27 +83,27 @@ import basicia.definitions.IState;
 
 class MyEnvState implements IState {
 
-	//observation: agent's observation of the current environment
-	public final observation :Array<Float>;
+    //observation: agent's observation of the current environment
+    public final observation :Array<Float>;
 
-	//reward: amount of reward returned after previous action
-	public final reward :Float;
+    //reward: amount of reward returned after previous action
+    public final reward: Float;
 
-	//done: whether the episode has ended, in which case further step() calls will return undefined results
-	public final done :Bool; // Debug infos
+    //done: whether the episode has ended, in which case further step() calls will return undefined results
+    public final done :Bool; 
 
-	// info: contains auxiliary diagnostic information (helpful for debugging, and sometimes learning)
-	public final info : Map<String, String>;
-	
-	public new(){
-		// set fields
-	}
+    // info: contains auxiliary diagnostic information (helpful for debugging, and sometimes learning)
+    public final info : Map<String, String>;
+    
+    public new(){
+        // set fields
+    }
 }
 ```
 
 ### extends `basicia.iron.WebSocketEnvTrait`
 
-And don't forget to attach the trait on an object or the scene!
+> and attach the trait on an object or the scene!
 
 ```haxe
 package runner;
@@ -130,22 +124,22 @@ import vdebug.VDebug;
 
 class MyEnvTrait extends basicia.iron.WebSocketEnvTrait {
 
-	public function new() {
-		super();	
-	}
+    public function new() {
+        super();    
+    }
  
-	public override function step(commands:Array<Float>): IState {
+    public override function step(commands:Array<Float>): IState {
 
-		// apply commands and return the state
-		var state = new MyEnvState(...);
-		return state;
-	}
+        // apply commands and return the state
+        var state = new MyEnvState(...);
+        return state;
+    }
 
-	public override function reset():IState {
-		// reset/init your environement and return the first state
-		var state = new MyEnvState(...);
-		return state;
-	}
+    public override function reset():IState {
+        // reset/init your environement and return the first state
+        var state = new MyEnvState(...);
+        return state;
+    }
 }
 ```
 

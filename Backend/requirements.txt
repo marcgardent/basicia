@@ -1,0 +1,7 @@
+numpy<1.17,>=1.14.5
+gym==0.14.0
+tensorboard==1.14.0
+tensorflow-gpu==1.14.0
+keras-rl==0.4.2
+websockets==8.0.2
+nest_asyncio

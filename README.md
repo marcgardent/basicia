@@ -15,6 +15,11 @@ This project provide a `WebSocket` communication between `Keras-RL` and `Armory3
 
 ### your workspace
 
+Quick start with an example :
+- Clone this repository `git clone https://github.com/MarketGarden/basicia_examples`
+
+OR
+
 - Locate the `.blend` file you are working with
 - Create the `Libraries` folder alongside your `.blend` file
 - into `Libraries` folder Clone this repository using `git clone https://github.com/armory3d/basicia` 

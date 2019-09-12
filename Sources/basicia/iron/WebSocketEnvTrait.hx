@@ -25,12 +25,19 @@ class WebSocketEnvTrait extends iron.Trait {
 	 */
 	public function reset():IState { throw "override in sub-class"; }
 
-	private var backend:WebSocketClientImpl ;
+	/**
+	 * call only one time
+	 * @return IState
+	 */
+	public function init():Void { throw "override in sub-class"; }
+
+	private var backend:WebSocketClientImpl;
 	
 	public function new() {
 		super();
 
 		notifyOnInit(function() {
+			this.init();
 			this.backend = new WebSocketClientImpl(this.onLateInit, this.reset);
 		});
 	}

@@ -32,8 +32,8 @@ set_session(session)
 class WebsocketEnv(Env):
 
     metadata = {'render.modes': []}
-    action_space = Box(low=-1.0, high=1.0, shape=(2,), dtype=np.float32) # # output shape, impulse (X,Y)
-    observation_space = Box(low=0, high=1.0, shape=(8,), dtype=np.float32) # input shape : Vector3, (Velocity,Y+, Z+, RC(Y+),RayCast(..), ... )
+    action_space = Box(low=-1.0, high=1.0, shape=(2,), dtype=np.float32) # # output shape
+    observation_space = Box(low=0, high=1.0, shape=(10,), dtype=np.float32) # input shape
     reward_range = (0, 1)
     spec = None
     done = False;
@@ -62,7 +62,8 @@ class WebsocketEnv(Env):
             done (boolean): Whether the episode has ended, in which case further step() calls will return undefined results.
             info (dict): Contains auxiliary diagnostic information (helpful for debugging, and sometimes learning).
         """
-        if self.done : return None
+        ## Fixme ?!
+        # if self.done : return None
         # assert self.action_space.contains(action), "%r (%s) invalid" %(action, type(action))
 
         self.__send(action.tolist())
@@ -94,3 +95,6 @@ class WebsocketEnv(Env):
     def seed(self, seed=None):
         raise NotImplementedError
 
+    def close(self):
+        self.done  = False
+        #asyncio.run(self.websocket.send("RESET"))

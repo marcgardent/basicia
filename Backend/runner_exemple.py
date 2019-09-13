@@ -10,21 +10,19 @@ from rl.core import Env
 from gym.spaces import Box
 from basicia.websocketenv import WebsocketEnv
 import basicia.websocketserver 
+import os.path
+from keras.models import load_model
 
 class RunnerEnv(WebsocketEnv):
     action_space = Box(low=-1.0, high=1.0, shape=(2,), dtype=np.float32)
-    observation_space = Box(low=0, high=1.0, shape=(8,), dtype=np.float32)
+    observation_space = Box(low=-100.0, high=100.0, shape=(2,), dtype=np.float32)
     reward_range = (0, 1)
-     
-def main(socket):
-    
-    # Get the environment and extract the number of actions.
-    env = RunnerEnv(socket)
-    
+
+
+def create_agent(env):
     assert len(env.action_space.shape) == 1
     nb_actions = env.action_space.shape[0]
 
-    # Next, we build a very simple model.
     actor = Sequential()
     actor.add(Flatten(input_shape=(1,) + env.observation_space.shape))
     actor.add(Dense(16))
@@ -61,16 +59,37 @@ def main(socket):
                       random_process=random_process, gamma=.99, target_model_update=1e-3)
     agent.compile(Adam(lr=.001, clipnorm=1.), metrics=['mae'])
 
+    return agent
+
+def main(socket):
+    
+    # Get the environment and extract the number of actions.
+    env = RunnerEnv(socket)
+    
+    # Next, we build a very simple model.
+    
+    agent = create_agent(env)
+
+    
+    fname = "runner_weights.h5f"
+    filename, extension = os.path.splitext(fname)
+    actor_filepath = filename + '_actor' + extension
+    critic_filepath = filename + '_critic' + extension
+    # load if exists
+    if os.path.isfile(actor_filepath) and os.path.isfile(critic_filepath) :
+        print("loading....")
+        agent.load_weights(fname)
+        
+
     # Okay, now it's time to learn something! We visualize the training here for show, but this
     # slows down training quite a lot. You can always safely abort the training prematurely using
     # Ctrl + C.
-    agent.fit(env, nb_steps=50000, visualize=True, verbose=1, nb_max_episode_steps=200)
-
-    # After training is done, we save the final weights.
-    agent.save_weights('ddpg_my_weights.h5f', overwrite=True)
+    
+    #agent.fit(env, nb_steps=50000, visualize=False, verbose=1, nb_max_episode_steps=200)
+    #agent.save_weights(fname,overwrite=True)
 
     # Finally, evaluate our algorithm for 5 episodes.
-    agent.test(env, nb_episodes=5, visualize=True, nb_max_episode_steps=200)
+    agent.test(env, nb_episodes=50, visualize=True, nb_max_episode_steps=200)
 
 
 if __name__ == "__main__":

@@ -1,3 +1,7 @@
+import tensorflow as tf
+import tensorflowjs as tfjs
+tf.compat.v1.disable_eager_execution()
+
 import websockets
 import numpy as np
 from keras.models import Sequential, Model
@@ -12,6 +16,7 @@ from basicia.websocketenv import WebsocketEnv
 import basicia.websocketserver 
 import os.path
 from keras.models import load_model
+
 
 class RunnerEnv(WebsocketEnv):
     action_space = Box(low=-1.0, high=1.0, shape=(2,), dtype=np.float32)
@@ -59,7 +64,7 @@ def create_agent(env):
                       random_process=random_process, gamma=.99, target_model_update=1e-3)
     agent.compile(Adam(lr=.001, clipnorm=1.), metrics=['mae'])
 
-    return agent
+    return actor, agent
 
 def main(socket):
     
@@ -68,7 +73,7 @@ def main(socket):
     
     # Next, we build a very simple model.
     
-    agent = create_agent(env)
+    actor, agent = create_agent(env)
 
     
     fname = "runner_weights.h5f"
@@ -85,11 +90,14 @@ def main(socket):
     # slows down training quite a lot. You can always safely abort the training prematurely using
     # Ctrl + C.
     
-    #agent.fit(env, nb_steps=50000, visualize=False, verbose=1, nb_max_episode_steps=200)
+    #agent.fit(env, nb_steps=50000, visualize=False, verbose=1, nb_max_episode_steps=1000)
     #agent.save_weights(fname,overwrite=True)
+    
+    # export as tensorflow.js https://www.tensorflow.org/js/tutorials/conversion/import_keras?hl=fr
+    tfjs.converters.save_keras_model(actor, "runner-tfjs")
 
-    # Finally, evaluate our algorithm for 5 episodes.
-    agent.test(env, nb_episodes=50, visualize=True, nb_max_episode_steps=200)
+    # Finally, evaluate our algorithm for 50 episodes.
+    agent.test(env, nb_episodes=50, visualize=True, nb_max_episode_steps=1000)
 
 
 if __name__ == "__main__":

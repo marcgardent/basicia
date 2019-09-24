@@ -17,12 +17,16 @@ import basicia.websocketserver
 import os.path
 from keras.models import load_model
 
+LAZYLOAD = True
+TRAIN = True
+STEPS = 500
+OBSERVATION = 10
+ACTION = 2
 
 class RunnerEnv(WebsocketEnv):
-    action_space = Box(low=-1.0, high=1.0, shape=(2,), dtype=np.float32)
-    observation_space = Box(low=-100.0, high=100.0, shape=(2,), dtype=np.float32)
+    action_space = Box(low=-1.0, high=1.0, shape=(ACTION,), dtype=np.float32)
+    observation_space = Box(low=-1.0, high=1.0, shape=(OBSERVATION,), dtype=np.float32)
     reward_range = (0, 1)
-
 
 def create_agent(env):
     assert len(env.action_space.shape) == 1
@@ -74,27 +78,24 @@ def main(socket):
     # Next, we build a very simple model.
     
     actor, agent = create_agent(env)
-
-    
-    fname = "runner_weights.h5f"
+    fname = "runner_speedy_weights.h5f"
     filename, extension = os.path.splitext(fname)
     actor_filepath = filename + '_actor' + extension
     critic_filepath = filename + '_critic' + extension
     # load if exists
-    if os.path.isfile(actor_filepath) and os.path.isfile(critic_filepath) :
+    if LAZYLOAD and os.path.isfile(actor_filepath) and os.path.isfile(critic_filepath) :
         print("loading....")
         agent.load_weights(fname)
-        
-
+    
     # Okay, now it's time to learn something! We visualize the training here for show, but this
     # slows down training quite a lot. You can always safely abort the training prematurely using
     # Ctrl + C.
-    
-    #agent.fit(env, nb_steps=50000, visualize=False, verbose=1, nb_max_episode_steps=1000)
-    #agent.save_weights(fname,overwrite=True)
+    if TRAIN:
+        agent.fit(env, nb_steps=STEPS, visualize=False, verbose=1, nb_max_episode_steps=1000)
+        agent.save_weights(fname,overwrite=True)
     
     # export as tensorflow.js https://www.tensorflow.org/js/tutorials/conversion/import_keras?hl=fr
-    tfjs.converters.save_keras_model(actor, "runner-tfjs")
+    tfjs.converters.save_keras_model(actor, "runner-speedy-tfjs")
 
     # Finally, evaluate our algorithm for 50 episodes.
     agent.test(env, nb_episodes=50, visualize=True, nb_max_episode_steps=1000)

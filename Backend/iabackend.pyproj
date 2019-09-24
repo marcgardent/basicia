@@ -5,7 +5,7 @@
     <ProjectGuid>c1bc2ad7-ce83-4c98-8673-6ff0ab5bb360</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>runner_exemple.py</StartupFile>
+    <StartupFile>runner_goto_exemple.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -29,7 +29,8 @@
     <Compile Include="basicia\websocketenv.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="runner_exemple.py" />
+    <Compile Include="runner_speedy_exemple.py" />
+    <Compile Include="runner_goto_exemple.py" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="requirements.txt" />

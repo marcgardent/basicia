@@ -5,7 +5,7 @@
     <ProjectGuid>c1bc2ad7-ce83-4c98-8673-6ff0ab5bb360</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>runner_goto_exemple.py</StartupFile>
+    <StartupFile>basicia\blackbox.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -25,18 +25,40 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="basicia\DeepEvolve\allgenomes.py" />
+    <Compile Include="basicia\keras.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="basicia\DeepEvolve\trash\brute.py" />
+    <Compile Include="basicia\DeepEvolve\evolver.py" />
+    <Compile Include="basicia\DeepEvolve\genome.py" />
+    <Compile Include="basicia\DeepEvolve\idgen.py" />
+    <Compile Include="basicia\DeepEvolve\trash\main.py" />
+    <Compile Include="basicia\DeepEvolve\trash\train.py" />
+    <Compile Include="basicia\blackbox.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="basicia\DeepEvolve\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="basicia\websocketserver.py" />
     <Compile Include="basicia\websocketenv.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="basicia\__init__.py" />
     <Compile Include="runner_speedy_exemple.py" />
     <Compile Include="runner_goto_exemple.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="basicia\DeepEvolve\.gitignore" />
+    <Content Include="basicia\DeepEvolve\LICENSE" />
+    <Content Include="basicia\DeepEvolve\README.md" />
     <Content Include="requirements.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="basicia\" />
+    <Folder Include="basicia\DeepEvolve\" />
+    <Folder Include="basicia\DeepEvolve\trash\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

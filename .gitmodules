@@ -1,3 +1,6 @@
 [submodule "DeepEvolve"]
 	path = Backend/basicia/DeepEvolve
 	url = https://github.com/marcgardent/DeepEvolve.git
+[submodule "Backend/basicia/DeepEvolve"]
+	path = Backend/basicia/DeepEvolve
+	url = https://github.com/marcgardent/DeepEvolve.git

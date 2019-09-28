@@ -5,7 +5,7 @@
     <ProjectGuid>c1bc2ad7-ce83-4c98-8673-6ff0ab5bb360</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>basicia\blackbox.py</StartupFile>
+    <StartupFile>smocktest.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -25,17 +25,39 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="basicia\DeepEvolve\producter.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="basicia\DeepEvolve\allgenomes.py" />
-    <Compile Include="basicia\keras.py">
+    <Compile Include="basicia\DeepEvolve\genome.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="basicia\DeepEvolve\models\ComplexNode.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="basicia\DeepEvolve\models\ArrayNode.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="basicia\DeepEvolve\models\DiscretGene.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="smocktest.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="basicia\DeepEvolve\models\__init__.py" />
+    <Compile Include="basicia\DeepEvolve\utils.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="basicia\ddpgagent_test.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="basicia\DeepEvolve\trash\brute.py" />
     <Compile Include="basicia\DeepEvolve\evolver.py" />
-    <Compile Include="basicia\DeepEvolve\genome.py" />
+    <Compile Include="basicia\DeepEvolve\trash\genome.py" />
     <Compile Include="basicia\DeepEvolve\idgen.py" />
     <Compile Include="basicia\DeepEvolve\trash\main.py" />
     <Compile Include="basicia\DeepEvolve\trash\train.py" />
-    <Compile Include="basicia\blackbox.py">
+    <Compile Include="basicia\ddpgagent.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="basicia\DeepEvolve\__init__.py">
@@ -58,6 +80,7 @@
   <ItemGroup>
     <Folder Include="basicia\" />
     <Folder Include="basicia\DeepEvolve\" />
+    <Folder Include="basicia\DeepEvolve\models\" />
     <Folder Include="basicia\DeepEvolve\trash\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />

@@ -14,7 +14,7 @@ async def learn(websocket, path):
         raise Exception("Restart client!")
     globals()["themain"](websocket);
     
-def start(themain):
+def start_server(themain):
     __main = themain
     globals()["themain"] = themain
     start_server = websockets.serve(learn, "localhost", 8765)

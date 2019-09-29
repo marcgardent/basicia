@@ -5,7 +5,7 @@
     <ProjectGuid>c1bc2ad7-ce83-4c98-8673-6ff0ab5bb360</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>smocktest.py</StartupFile>
+    <StartupFile>runner_goto.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -41,16 +41,11 @@
     <Compile Include="basicia\DeepEvolve\models\DiscretGene.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="runner_goto.py" />
     <Compile Include="smocktest.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="basicia\DeepEvolve\models\__init__.py" />
-    <Compile Include="basicia\DeepEvolve\utils.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="basicia\ddpgagent_test.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="basicia\DeepEvolve\trash\brute.py" />
     <Compile Include="basicia\DeepEvolve\evolver.py" />
     <Compile Include="basicia\DeepEvolve\trash\genome.py" />

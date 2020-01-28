@@ -2,7 +2,7 @@ numpy==1.16.4
 six==1.11.0
 gym==0.14.0
 tensorboard==1.14.0
-tensorflow-gpu==1.14.0
+tensorflow-gpu==1.15.2
 keras==2.2.4
 keras-rl==0.4.2
 websockets==8.0.2
